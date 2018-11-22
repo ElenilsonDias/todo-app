@@ -8,38 +8,37 @@ module.exports = {
         filename: './app.js'
     },
     devServer: {
-        port: 8080,
+        port: 8088,
         contentBase: './public'
     },
     resolve: {
         extensions: ['','.js','.jsx'],
         alias:{
-            modules: __dirname+'node_modules'     
+            modules: __dirname+'/node_modules'     
         }
     },
     plugins: [
         new ExtractTextPlugin('app.cs')
     ],
-    module: [{
+    module: {
         loaders: [{
             text:/.jsx[x]?$/,
-            loader: babel,
-            exclude: '/node-modules',
+            loader: 'babel-loader',
+            exclude: '/node-modules/',
             query: {
                 presets: ['es2015','react'],
                 plugins: ['transform-object-rest-spread']
             }
 
         }, {
-            teste: /\.css$/,
+            test: /\.css$/,
             loader:ExtractTextPlugin.extract('style-loader','css-loader')
         }, {
             test: /\.woff|.woff2|.ttf|.eot|.svg*.*$/,
             loader: 'file'
-        }
-    ]
+        }]
         
-    }]
+    }
         
     
 }
